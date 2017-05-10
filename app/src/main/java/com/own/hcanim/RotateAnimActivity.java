@@ -59,6 +59,7 @@ public class RotateAnimActivity extends AppCompatActivity {
                 playTogether(iv_venus);
                 flag = false;
             }
+
         }
 
 
