@@ -3,66 +3,82 @@ package com.own.hcanim;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.content.Context;
+import android.content.Intent;
+import android.media.Image;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+/**
+ * Created by admin on 2017/5/19.
+ */
 
-public class RotateAnimActivity extends AppCompatActivity {
-    @BindView(R.id.iv_mars)
-    ImageView iv_mars;
-
-    @BindView(R.id.iv_moon)
-    ImageView iv_moon;
-
-    @BindView(R.id.iv_venus)
-    ImageView iv_venus;
-
-    @BindView(R.id.iv_ball)
-    ImageView iv_ball;
-
+public class PlanetLayout extends LinearLayout {
+    private Context context;
+    private ImageView iv_mars;
+    private ImageView iv_moon;
+    private ImageView iv_venus;
+    private ImageView iv_ball;
     private boolean flag;
     private static long lastClickTime = 0;//上次点击的时间
-
     private static int spaceTime = 500;//时间间隔
 
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rotate_anim);
-        ButterKnife.bind(this);
+    public PlanetLayout(Context context) {
+        super(context);
+        this.context = context;
     }
 
-    @OnClick(R.id.iv_ball)
-    public void click(View view) {
-        if (isFastClick()) {
-            return;
-        } else {
-            if (!flag) {
-                BigToNormal(view);
-                mars(iv_mars);
-                moon(iv_moon);
-                venus(iv_venus);
-                flag = true;
-            } else {
-                BigToNormal(view);
-                playTogether(iv_mars);
-                playTogether(iv_moon);
-                playTogether(iv_venus);
-                flag = false;
+    public PlanetLayout(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        this.context = context;
+        initView();
+    }
+
+    private void initView() {
+        View view = LayoutInflater.from(context).inflate(R.layout.activity_rotate_anim,this);
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
+        layoutParams.height = (int)context.getResources().getDimension(R.dimen.dimen_50dp);
+        view.setLayoutParams(layoutParams);
+        iv_mars = (ImageView)view.findViewById(R.id.iv_mars);
+        iv_moon = (ImageView)view.findViewById(R.id.iv_moon);
+        iv_venus = (ImageView)view.findViewById(R.id.iv_venus);
+        iv_ball = (ImageView)view.findViewById(R.id.iv_ball);
+        iv_ball.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isFastClick()) {
+                    return;
+                } else {
+                    if (!flag) {
+                        BigToNormal(v);
+                        mars(iv_mars);
+                        moon(iv_moon);
+                        venus(iv_venus);
+                        flag = true;
+                    } else {
+                        BigToNormal(v);
+                        playTogether(iv_mars);
+                        playTogether(iv_moon);
+                        playTogether(iv_venus);
+                        flag = false;
+                    }
+
+                }
             }
-
-        }
+        });
 
 
     }
+
+
     /**
      * 放大恢复
      *
@@ -252,6 +268,7 @@ public class RotateAnimActivity extends AppCompatActivity {
         return isAllowClick;
 
     }
+
 
 
 }
