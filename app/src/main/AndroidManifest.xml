@@ -8,21 +8,19 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" >
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BaseAnimActivity" />
-        <activity android:name=".AnimListenActivity"></activity>
-        <activity android:name=".CombinationAnimActivity">
+        <activity android:name="com.own.hcanim.BaseAnimActivity" />
+        <activity android:name="com.own.hcanim.AnimListenActivity" />
+        <activity android:name="com.own.hcanim.CombinationAnimActivity"></activity>
+        <activity android:name="com.own.hcanim.RotateAnimActivity"></activity>
+        <activity android:name="com.own.hcanim.MediaTestActivity"></activity>
 
-        </activity>
-        <activity android:name=".RotateAnimActivity">
-
-        </activity>
     </application>
 
 </manifest>
