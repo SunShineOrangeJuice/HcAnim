@@ -20,12 +20,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        iv_planet.setListener(new PlanetLayout.PlanetListener() {
-            @Override
-            public void OnPlanetListener(Class<?> clazz) {
+//        iv_planet.s(new PlanetLayout.PlanetListener() {
+//            @Override
+//            public void OnPlanetListener(Class<?> clazz) {
+//
+//            }
+//        });
 
-            }
-        });
 
     }
 }
